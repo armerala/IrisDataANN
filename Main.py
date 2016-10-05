@@ -6,7 +6,7 @@ Created on Sat Oct  1 18:10:21 2016
 """
 
 import numpy as np
-import NeuralNet
+import NeuralNet2
 
 def Parse(fileName, params):
     #get data from the file
@@ -25,30 +25,8 @@ def Parse(fileName, params):
     y=y.astype(float) #otherwise stays as string
     
     return X, y
-    
-#remove one at a time... very time intensive
-def CrossValidate(numIterations, X,y):
-    runningError =0    
-    
-    #leave one out cross-validation... good, but inefficient
-    for i in range(len(y)):
-        print(str(i))
-        XTrain = X
-        yTrain = y
-        x_out = X[i,:]
-        y_out = y[i]
-        np.delete(XTrain,(i), axis=0)
-        np.delete(yTrain,(i), axis=0)
-        
-        ann = NeuralNet.ANN()
-        ann.StochasticGD(numIterations,XTrain,yTrain)
-        error=ann.CalculateError(x_out,y_out)
-        runningError+=error
-    
-    totalError=runningError/len(y)
-    return totalError
 
 
 X,y = Parse('IrisData.txt', 4)
-ann = NeuralNet.ANN()
-ann.StochasticGD(10, X, y)
+ann = NeuralNet2.ANN()
+ann.StochasticGD(1, X, y)

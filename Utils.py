@@ -6,6 +6,7 @@ Created on Sat Oct  1 15:18:19 2016
 """
 
 import numpy as np
+#import NeuralNet
     
 def Parse(fileName, params):
     #get data from the file
@@ -39,7 +40,7 @@ def CrossValidate(numIterations, X,y):
         np.delete(XTrain,(i), axis=0)
         np.delete(yTrain,(i), axis=0)
         
-        ann = NeuralNet.ANN()
+        ann = NeuralNet2.ANN()
         ann.StochasticGD(numIterations,XTrain,yTrain)
         error=ann.CalculateError(x_out,y_out)
         runningError+=error
