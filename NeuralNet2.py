@@ -23,7 +23,7 @@ def SoftMax(x):
     return xt / np.sum(xt)
 
 class ANN:
-    def __init__(self, inputDim=4, hidDim=4, outputDim=3, alpha = 0.01, regLambda = .01):
+    def __init__(self, inputDim=4, hidDim=3, outputDim=3, alpha = 0.01, regLambda = .01):
         #dimensionality of each layer
         self.inputDim = inputDim
         self.hidDim = hidDim
@@ -132,4 +132,6 @@ class ANN:
         self.W2 = bestW2
         self.b2 = bestb2
         
+        lastOutput, __ = self.ForProp(X)
+        print(str(lastOutput))
         print("In Sample Error: " + str(bestError))
